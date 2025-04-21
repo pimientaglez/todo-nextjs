@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-
-const CreateTodo = () => {
+interface CreateTodoProps {
+  onTodoCreated: () => void;
+}
+const CreateTodo: React.FC<CreateTodoProps> = ({ onTodoCreated }) => {
   const [title, setTitle] = useState("");
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (title.length > 0) {
-      createTodo(title);
+      await createTodo(title);
       setTitle("");
+      onTodoCreated();
     }
   };
   const createTodo = async (title: string) => {

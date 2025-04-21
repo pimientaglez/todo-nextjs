@@ -1,26 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TodoItem, { Todo } from "./TodoItem";
 
-const TodoContainer = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/tasks");
-        if (!response.ok) {
-          throw new Error("Http error Status " + response.status);
-        }
-        const data: Todo[] = await response.json();
-        setTodos(data);
-      } catch (err) {
-        throw new Error("Http error Status " + err);
-      }
-    };
-    fetchTodos();
-  }, []);
-
+interface TodoContainerProps {
+  todos: Todo[];
+}
+const TodoContainer: React.FC<TodoContainerProps> = ({ todos }) => {
   return (
     <div>
       {todos.map((item: Todo) => (
