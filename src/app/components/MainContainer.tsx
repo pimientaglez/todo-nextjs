@@ -22,13 +22,10 @@ const MainContainer = () => {
       throw new Error("Http error Status " + err);
     }
   };
-  const handleTodoCreated = () => {
-    fetchTodos();
-  };
   return (
     <div>
-      <CreateTodo onTodoCreated={handleTodoCreated} />
-      <TodoContainer todos={todos} />
+      <CreateTodo onTodoCreated={fetchTodos} />
+      <TodoContainer todos={todos} onTodoUpdated={fetchTodos} />
     </div>
   );
 };
