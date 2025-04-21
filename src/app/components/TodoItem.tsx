@@ -1,6 +1,6 @@
 import React from "react";
 
-interface Todo {
+export interface Todo {
   id: number;
   title: string;
   status: STATUS;
