@@ -18,6 +18,10 @@ const TodoContainer: React.FC<TodoContainerProps> = ({
     });
     onTodoUpdated();
   };
+  const handleDelete = async (id: number) => {
+    await deleteTodo(id);
+    onTodoUpdated();
+  };
   const updateTodo = async (todo: Todo) => {
     await fetch(`http://localhost:8080/api/tasks/${todo.id}`, {
       method: "PUT",
@@ -27,10 +31,20 @@ const TodoContainer: React.FC<TodoContainerProps> = ({
       body: JSON.stringify({ ...todo }),
     });
   };
+  const deleteTodo = async (id: number) => {
+    await fetch(`http://localhost:8080/api/tasks/${id}`, {
+      method: "DELETE",
+    });
+  };
   return (
     <div>
       {todos.map((item: Todo) => (
-        <TodoItem key={item.id} todo={item} onTodoUpdate={handleUpdate} />
+        <TodoItem
+          key={item.id}
+          todo={item}
+          onTodoUpdate={handleUpdate}
+          onTodoDelete={handleDelete}
+        />
       ))}
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TodoButtons from "./TodoButtons";
 
 export interface Todo {
   id: number;
@@ -10,9 +11,14 @@ export type STATUS = "PENDING" | "COMPLETED" | "ARCHIVED";
 interface TodoItemProps {
   todo: Todo;
   onTodoUpdate: (todo: Todo, selection: STATUS) => void;
+  onTodoDelete: (id: number) => void;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo, onTodoUpdate }) => {
+const TodoItem: React.FC<TodoItemProps> = ({
+  todo,
+  onTodoUpdate,
+  onTodoDelete,
+}) => {
   const [checked, setChecked] = useState<boolean>(
     todo.status === "PENDING" ? false : true
   );
@@ -30,6 +36,11 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onTodoUpdate }) => {
       />
       <span>{todo.title}</span>
       <span>{todo.status}</span>
+      <TodoButtons
+        todo={todo}
+        onDeleteItem={onTodoDelete}
+        onArchiveItem={onTodoUpdate}
+      />
     </div>
   );
 };
