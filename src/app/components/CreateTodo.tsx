@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
 interface CreateTodoProps {
   onTodoCreated: () => void;
 }
@@ -27,16 +30,22 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ onTodoCreated }) => {
 
   return (
     <div>
-      <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}>
-        <input
+      <form
+        className="flex"
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
+      >
+        <Input
           type="text"
           name="title"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleInputChange(e)
           }
           value={title}
+          className="mr-2"
         />
-        <button type="submit">Add</button>
+        <Button variant="outline" type="submit">
+          Add Todo
+        </Button>
       </form>
     </div>
   );
