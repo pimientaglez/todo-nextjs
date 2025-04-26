@@ -1,18 +1,13 @@
 # Todo Next.js Application
 
-A simple and intuitive TODO list application built with [Next.js](https://nextjs.org/), styled with [Tailwind CSS](https://tailwindcss.com/), and using browser local storage for task persistence. This project serves as a lightweight example of a full-stack web application with a modern tech stack, perfect for learning or as a starting point for more complex applications.
+A simple and intuitive TODO list application built with [Next.js](https://nextjs.org/), styled with [Tailwind CSS](https://tailwindcss.com/). This project serves as a lightweight example of a front-end web application with a modern tech stack, focused on learning and as a starting point for more complex applications.
 
 ## Features
 
-- **Task Management**: Create, edit, delete, and mark tasks as complete.
-- **Persistent Storage**: Tasks are saved in the browser's local storage, ensuring data persists across sessions.
+- **Task Management**: Create, Archive, Delete, and mark tasks as Complete.
 - **Responsive Design**: Fully responsive UI, optimized for both desktop and mobile devices.
 - **Modern Styling**: Clean and minimal design powered by Tailwind CSS.
 - **Fast Performance**: Leverages Next.js for server-side rendering and static site generation.
-
-## Demo
-
-Check out the live demo [here](https://todo-nextjs-pimientaglez.vercel.app/) (replace with actual deployment URL if available).
 
 ## Getting Started
 
@@ -62,12 +57,16 @@ Follow these steps to set up and run the project locally.
 
    Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
+### Backend Installation
+
+The [backend](https://github.com/pimientaglez/todo-spring-boot) is created with spring boot. For installation and reference check the link: https://github.com/pimientaglez/todo-spring-boot
+
 ## Usage
 
 - **Add a Task**: Enter a task in the input field and press "Add" or hit Enter.
-- **Edit a Task**: Click on a task to edit its text.
 - **Complete a Task**: Check the checkbox next to a task to mark it as complete.
-- **Delete a Task**: Click the delete button to remove a task.
+- **Delete a Task**: Click the Delete button to remove a task.
+- **Archive a Task**: Click the Archive button to archive a task and click Restore to 'Unarchive' it.
 
 ## Technologies Used
 
@@ -75,7 +74,6 @@ Follow these steps to set up and run the project locally.
 - **[React](https://reactjs.org/)**: JavaScript library for building user interfaces.
 - **[Tailwind CSS](https://tailwindcss.com/)**: Utility-first CSS framework for styling.
 - **[TypeScript](https://www.typescriptlang.org/)**: Typed JavaScript for better developer experience.
-- **[Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)**: Browser API for persistent data storage.
 
 ## Contributing
 
@@ -92,11 +90,6 @@ Please ensure your code follows the project's coding standards and includes appr
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-## Acknowledgments
-
-- Inspired by modern TODO list applications and Next.js tutorials.
-- Thanks to the [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/) communities for their excellent documentation and tools.
 
 ## Contact
 
