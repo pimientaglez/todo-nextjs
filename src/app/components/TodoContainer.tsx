@@ -1,8 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import TodoItem, { STATUS, Todo } from "./TodoItem";
+import { STATUS, Todo } from "./TodoItem";
+import TodoGroup from "./TodoGroup";
 
+interface TodoCategory {
+  completed: Todo[];
+  pending: Todo[];
+  archived: Todo[];
+}
 interface TodoContainerProps {
   todos: Todo[];
   onTodoUpdated: () => void;
@@ -13,26 +19,22 @@ const TodoContainer: React.FC<TodoContainerProps> = ({
   onTodoUpdated,
   showArchived,
 }) => {
-  const [todoList, setTodoList] = useState<Todo[]>([]);
-  useEffect(() => {
-    console.log("On load", todoList);
-  }, [todoList]);
+  const [todoList, setTodoList] = useState<TodoCategory>({
+    completed: [],
+    pending: [],
+    archived: [],
+  });
 
   useEffect(() => {
-    const handleShowArchived = (selection: boolean) => {
-      if (selection) {
-        setTodoList(todos);
-      } else {
-        const filteredTodos = todos.filter(
-          (item) => item.status !== "ARCHIVED"
-        );
-        setTodoList(filteredTodos);
-      }
-    };
-    console.log();
-    setTodoList(todos);
-    handleShowArchived(showArchived);
-  }, [showArchived, todos]);
+    const completedTodos = todos.filter((item) => item.status === "COMPLETED");
+    const pendingTodos = todos.filter((item) => item.status === "PENDING");
+    const archivedTodos = todos.filter((item) => item.status === "ARCHIVED");
+    setTodoList({
+      completed: completedTodos,
+      pending: pendingTodos,
+      archived: archivedTodos,
+    });
+  }, [todos]);
 
   const handleUpdate = async (todo: Todo, status: STATUS) => {
     await updateTodo({
@@ -61,14 +63,25 @@ const TodoContainer: React.FC<TodoContainerProps> = ({
   };
   return (
     <div>
-      {todoList.map((item: Todo) => (
-        <TodoItem
-          key={item.id}
-          todo={item}
-          onTodoUpdate={handleUpdate}
-          onTodoDelete={handleDelete}
-        />
-      ))}
+      <TodoGroup
+        group="PENDING"
+        todos={todoList.pending}
+        handleDelete={handleDelete}
+        handleUpdate={handleUpdate}
+      />
+      <TodoGroup
+        group="COMPLETED"
+        todos={todoList.completed}
+        handleDelete={handleDelete}
+        handleUpdate={handleUpdate}
+      />
+      <TodoGroup
+        group="ARCHIVED"
+        todos={todoList.archived}
+        handleDelete={handleDelete}
+        handleUpdate={handleUpdate}
+        show={showArchived}
+      />
     </div>
   );
 };
