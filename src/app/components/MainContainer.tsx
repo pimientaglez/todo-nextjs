@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import CreateTodo from "./CreateTodo";
 import TodoContainer from "./TodoContainer";
 import { Todo } from "./TodoItem";
+import ToggleArchived from "./ToggleArchived";
 
 const MainContainer = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [showArchived, setShowArchived] = useState<boolean>(false);
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -22,10 +24,20 @@ const MainContainer = () => {
       throw new Error("Http error Status " + err);
     }
   };
+
+  const handleCheck = (selection: boolean) => {
+    setShowArchived(selection);
+  };
+
   return (
     <div>
       <CreateTodo onTodoCreated={fetchTodos} />
-      <TodoContainer todos={todos} onTodoUpdated={fetchTodos} />
+      <ToggleArchived onToggleCheck={handleCheck} />
+      <TodoContainer
+        todos={todos}
+        onTodoUpdated={fetchTodos}
+        showArchived={showArchived}
+      />
     </div>
   );
 };
