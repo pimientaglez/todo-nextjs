@@ -1,5 +1,6 @@
 import React from "react";
 import { STATUS, Todo } from "./TodoItem";
+import { Button } from "@/components/ui/button";
 
 interface TodoButtons {
   todo: Todo;
@@ -15,10 +16,12 @@ const TodoButtons: React.FC<TodoButtons> = ({
   const newStatus = todo.status === "ARCHIVED" ? "PENDING" : "ARCHIVED";
   return (
     <div>
-      <button onClick={() => onDeleteItem(todo.id)}>Delete</button>
-      <button onClick={() => onArchiveItem(todo, newStatus)}>{`${
+      <Button onClick={() => onDeleteItem(todo.id)} className="mr-2">
+        Delete
+      </Button>
+      <Button onClick={() => onArchiveItem(todo, newStatus)}>{`${
         todo.status === "ARCHIVED" ? "Restore" : "Archive"
-      }`}</button>
+      }`}</Button>
     </div>
   );
 };

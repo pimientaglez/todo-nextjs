@@ -27,18 +27,23 @@ const TodoItem: React.FC<TodoItemProps> = ({
     onTodoUpdate(todo, e.target.checked ? "COMPLETED" : "PENDING");
   };
   return (
-    <div>
-      <input
-        type="checkbox"
-        name="checkbox"
-        checked={checked}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCheck(e)}
-        disabled={todo.status === "ARCHIVED"}
-      />
-      <span className={`${todo.status === "COMPLETED" ? "line-through" : ""}`}>
-        {todo.title}
-      </span>
-      <span>{todo.status}</span>
+    <div className="flex justify-between mt-2">
+      <div className="flex items-center">
+        <input
+          type="checkbox"
+          name="checkbox"
+          checked={checked}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCheck(e)}
+          disabled={todo.status === "ARCHIVED"}
+          className="mr-2"
+        />
+        <span
+          className={`${todo.status === "COMPLETED" ? "line-through" : ""}`}
+        >
+          {todo.title}
+        </span>
+      </div>
+      {/* <span>{todo.status}</span> */}
       <TodoButtons
         todo={todo}
         onDeleteItem={onTodoDelete}
