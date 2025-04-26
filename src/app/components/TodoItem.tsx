@@ -5,11 +5,11 @@ export interface Todo {
   title: string;
   status: STATUS;
 }
-type STATUS = "PENDING" | "COMPLETED" | "ARCHIVED";
+export type STATUS = "PENDING" | "COMPLETED" | "ARCHIVED";
 
 interface TodoItemProps {
   todo: Todo;
-  onTodoUpdate: (todo: Todo, selection: boolean) => void;
+  onTodoUpdate: (todo: Todo, selection: STATUS) => void;
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo, onTodoUpdate }) => {
@@ -18,7 +18,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onTodoUpdate }) => {
   );
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(!checked);
-    onTodoUpdate(todo, e.target.checked);
+    onTodoUpdate(todo, e.target.checked ? "COMPLETED" : "PENDING");
   };
   return (
     <div>

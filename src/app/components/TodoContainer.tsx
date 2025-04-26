@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import TodoItem, { Todo } from "./TodoItem";
+import TodoItem, { STATUS, Todo } from "./TodoItem";
 
 interface TodoContainerProps {
   todos: Todo[];
@@ -11,10 +11,10 @@ const TodoContainer: React.FC<TodoContainerProps> = ({
   todos,
   onTodoUpdated,
 }) => {
-  const handleUpdate = async (todo: Todo, selection: boolean) => {
+  const handleUpdate = async (todo: Todo, status: STATUS) => {
     await updateTodo({
       ...todo,
-      status: selection ? "COMPLETED" : "PENDING",
+      status: status,
     });
     onTodoUpdated();
   };
