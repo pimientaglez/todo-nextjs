@@ -33,8 +33,11 @@ const TodoItem: React.FC<TodoItemProps> = ({
         name="checkbox"
         checked={checked}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCheck(e)}
+        disabled={todo.status === "ARCHIVED"}
       />
-      <span>{todo.title}</span>
+      <span className={`${todo.status === "COMPLETED" ? "line-through" : ""}`}>
+        {todo.title}
+      </span>
       <span>{todo.status}</span>
       <TodoButtons
         todo={todo}

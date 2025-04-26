@@ -12,10 +12,13 @@ const TodoButtons: React.FC<TodoButtons> = ({
   onDeleteItem,
   onArchiveItem,
 }) => {
+  const newStatus = todo.status === "ARCHIVED" ? "PENDING" : "ARCHIVED";
   return (
     <div>
       <button onClick={() => onDeleteItem(todo.id)}>Delete</button>
-      <button onClick={() => onArchiveItem(todo, "ARCHIVED")}>Archive</button>
+      <button onClick={() => onArchiveItem(todo, newStatus)}>{`${
+        todo.status === "ARCHIVED" ? "Restore" : "Archive"
+      }`}</button>
     </div>
   );
 };
