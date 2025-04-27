@@ -29,7 +29,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
   };
   return (
     <div className="flex justify-between mt-2">
-      <div className="flex items-center">
+      <div className="flex items-center mr-2">
         <Switch
           name="check-todo"
           checked={checked}
