@@ -17,6 +17,7 @@ const ToggleArchived: React.FC<ToggleArchivedProps> = ({ onToggleCheck }) => {
         name="check-archive"
         checked={checked}
         onCheckedChange={(check: boolean) => handleCheck(check)}
+        className="cursor-pointer"
       />{" "}
       Show Archived
     </div>

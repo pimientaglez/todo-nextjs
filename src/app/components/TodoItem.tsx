@@ -28,7 +28,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
     onTodoUpdate(todo, check ? "COMPLETED" : "PENDING");
   };
   return (
-    <div className="flex justify-between mt-2">
+    <div className="flex justify-between mt-2 w-full">
       <div className="flex items-center mr-2">
         <Switch
           name="check-todo"
@@ -38,12 +38,13 @@ const TodoItem: React.FC<TodoItemProps> = ({
           className="mr-2 cursor-pointer"
         />
         <span
-          className={`${todo.status === "COMPLETED" ? "line-through" : ""}`}
+          className={`${
+            todo.status === "COMPLETED" ? "line-through" : ""
+          } max-w-80 min-w-80 truncate text-foreground flex-1`}
         >
           {todo.title}
         </span>
       </div>
-      {/* <span>{todo.status}</span> */}
       <TodoButtons
         todo={todo}
         onDeleteItem={onTodoDelete}
