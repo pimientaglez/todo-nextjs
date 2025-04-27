@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TodoButtons from "./TodoButtons";
-import { Switch } from "@/components/ui/switch";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export interface Todo {
   id: number;
@@ -30,7 +30,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
   return (
     <div className="flex justify-between mt-2 w-full">
       <div className="flex items-center mr-2">
-        <Switch
+        <Checkbox
           name="check-todo"
           checked={checked}
           onCheckedChange={(check: boolean) => handleCheck(check)}
