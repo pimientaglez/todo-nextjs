@@ -5,6 +5,7 @@ import CreateTodo from "./CreateTodo";
 import TodoContainer from "./TodoContainer";
 import { Todo } from "./TodoItem";
 import ToggleArchived from "./ToggleArchived";
+import { ModeToggle } from "./ModeToggle";
 
 const MainContainer = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -31,6 +32,7 @@ const MainContainer = () => {
 
   return (
     <div>
+      <ModeToggle />
       <CreateTodo onTodoCreated={fetchTodos} />
       <ToggleArchived onToggleCheck={handleCheck} />
       <TodoContainer
