@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TodoButtons from "./TodoButtons";
+import { Switch } from "@/components/ui/switch";
 
 export interface Todo {
   id: number;
@@ -22,20 +23,19 @@ const TodoItem: React.FC<TodoItemProps> = ({
   const [checked, setChecked] = useState<boolean>(
     todo.status === "PENDING" ? false : true
   );
-  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheck = (check: boolean) => {
     setChecked(!checked);
-    onTodoUpdate(todo, e.target.checked ? "COMPLETED" : "PENDING");
+    onTodoUpdate(todo, check ? "COMPLETED" : "PENDING");
   };
   return (
     <div className="flex justify-between mt-2">
       <div className="flex items-center">
-        <input
-          type="checkbox"
-          name="checkbox"
+        <Switch
+          name="check-todo"
           checked={checked}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCheck(e)}
+          onCheckedChange={(check: boolean) => handleCheck(check)}
           disabled={todo.status === "ARCHIVED"}
-          className="mr-2"
+          className="mr-2 cursor-pointer"
         />
         <span
           className={`${todo.status === "COMPLETED" ? "line-through" : ""}`}
