@@ -74,6 +74,7 @@ The [backend](https://github.com/pimientaglez/todo-spring-boot) is created with 
 - **[React](https://reactjs.org/)**: JavaScript library for building user interfaces.
 - **[Tailwind CSS](https://tailwindcss.com/)**: Utility-first CSS framework for styling.
 - **[TypeScript](https://www.typescriptlang.org/)**: Typed JavaScript for better developer experience.
+- **[Shadcn](https://ui.shadcn.com/)**: A set of beautifully-designed, accessible components and a code distribution platform.
 
 ## Contributing
 

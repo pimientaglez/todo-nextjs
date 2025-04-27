@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Pen } from "lucide-react";
+
 interface CreateTodoProps {
   onTodoCreated: () => void;
 }
@@ -27,16 +31,23 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ onTodoCreated }) => {
 
   return (
     <div>
-      <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}>
-        <input
+      <form
+        className="flex mb-2"
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
+      >
+        <Input
           type="text"
           name="title"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleInputChange(e)
           }
           value={title}
+          className="mr-2"
         />
-        <button type="submit">Add</button>
+        <Button variant="outline" className="cursor-pointer">
+          <Pen className="mr-2 h-4 w-4" aria-hidden="true" />
+          Add Todo
+        </Button>
       </form>
     </div>
   );

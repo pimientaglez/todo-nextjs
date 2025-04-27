@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Switch } from "@/components/ui/switch";
 
 interface ToggleArchivedProps {
   onToggleCheck: (selection: boolean) => void;
@@ -6,17 +7,17 @@ interface ToggleArchivedProps {
 
 const ToggleArchived: React.FC<ToggleArchivedProps> = ({ onToggleCheck }) => {
   const [checked, setChecked] = useState<boolean>(false);
-  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheck = (check: boolean) => {
     setChecked(!checked);
-    onToggleCheck(e.target.checked);
+    onToggleCheck(check);
   };
   return (
     <div>
-      <input
-        type="checkbox"
-        name="checkbox"
+      <Switch
+        name="check-archive"
         checked={checked}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCheck(e)}
+        onCheckedChange={(check: boolean) => handleCheck(check)}
+        className="cursor-pointer"
       />{" "}
       Show Archived
     </div>

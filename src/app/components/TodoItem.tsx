@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TodoButtons from "./TodoButtons";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export interface Todo {
   id: number;
@@ -22,23 +23,28 @@ const TodoItem: React.FC<TodoItemProps> = ({
   const [checked, setChecked] = useState<boolean>(
     todo.status === "PENDING" ? false : true
   );
-  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheck = (check: boolean) => {
     setChecked(!checked);
-    onTodoUpdate(todo, e.target.checked ? "COMPLETED" : "PENDING");
+    onTodoUpdate(todo, check ? "COMPLETED" : "PENDING");
   };
   return (
-    <div>
-      <input
-        type="checkbox"
-        name="checkbox"
-        checked={checked}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCheck(e)}
-        disabled={todo.status === "ARCHIVED"}
-      />
-      <span className={`${todo.status === "COMPLETED" ? "line-through" : ""}`}>
-        {todo.title}
-      </span>
-      <span>{todo.status}</span>
+    <div className="flex justify-between mt-2 w-full">
+      <div className="flex items-center mr-2">
+        <Checkbox
+          name="check-todo"
+          checked={checked}
+          onCheckedChange={(check: boolean) => handleCheck(check)}
+          disabled={todo.status === "ARCHIVED"}
+          className="mr-2 cursor-pointer"
+        />
+        <span
+          className={`${
+            todo.status === "COMPLETED" ? "line-through" : ""
+          } max-w-80 min-w-80 truncate text-foreground flex-1`}
+        >
+          {todo.title}
+        </span>
+      </div>
       <TodoButtons
         todo={todo}
         onDeleteItem={onTodoDelete}
