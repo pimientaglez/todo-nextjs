@@ -16,12 +16,16 @@ const TodoButtons: React.FC<TodoButtons> = ({
   const newStatus = todo.status === "ARCHIVED" ? "PENDING" : "ARCHIVED";
   return (
     <div>
-      <Button onClick={() => onDeleteItem(todo.id)} className="mr-2">
+      <Button
+        onClick={() => onDeleteItem(todo.id)}
+        className="mr-2 cursor-pointer"
+      >
         Delete
       </Button>
-      <Button onClick={() => onArchiveItem(todo, newStatus)}>{`${
-        todo.status === "ARCHIVED" ? "Restore" : "Archive"
-      }`}</Button>
+      <Button
+        className="cursor-pointer"
+        onClick={() => onArchiveItem(todo, newStatus)}
+      >{`${todo.status === "ARCHIVED" ? "Restore" : "Archive"}`}</Button>
     </div>
   );
 };
