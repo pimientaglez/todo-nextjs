@@ -32,7 +32,9 @@ const MainContainer = () => {
 
   return (
     <div>
-      <ModeToggle />
+      <div className="fixed top-2 right-2">
+        <ModeToggle />
+      </div>
       <CreateTodo onTodoCreated={fetchTodos} />
       <ToggleArchived onToggleCheck={handleCheck} />
       <TodoContainer
