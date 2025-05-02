@@ -27,6 +27,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Todo } from "./TodoItem";
 
 const formatDateWithMicroseconds = (date: Date): string => {
   const isoString = date.toISOString(); // e.g., "2025-04-26T21:15:54.577Z"
@@ -40,17 +41,8 @@ interface CreateTodoProps {
   onTodoCreated: () => void;
 }
 
-interface createFormType {
-  title: string;
-  status: string;
-  priority: string;
-  version: number;
-  createDate: string;
-  promiseDate: string;
-  completeDate: string | null;
-}
 const CreateTodo: React.FC<CreateTodoProps> = ({ onTodoCreated }) => {
-  const [createFormData, setCreateFormData] = useState<createFormType>({
+  const [createFormData, setCreateFormData] = useState<Todo>({
     title: "",
     status: "PENDING",
     priority: "Low",
@@ -65,14 +57,14 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ onTodoCreated }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setCreateFormData((prevState: createFormType) => ({
+    setCreateFormData((prevState: Todo) => ({
       ...prevState,
       [name]: value,
     }));
     setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
   const handleDropdownChange = (value: string) => {
-    setCreateFormData((prevState: createFormType) => ({
+    setCreateFormData((prevState: Todo) => ({
       ...prevState,
       priority: value,
     }));
@@ -80,7 +72,7 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ onTodoCreated }) => {
   };
   const handleCalendarDateChange = (date: Date | undefined) => {
     if (date) {
-      setCreateFormData((prevState: createFormType) => ({
+      setCreateFormData((prevState: Todo) => ({
         ...prevState,
         promiseDate: formatDateWithMicroseconds(date),
       }));
@@ -127,7 +119,7 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ onTodoCreated }) => {
       console.error(error);
     }
   };
-  const createTodo = async (formData: createFormType) => {
+  const createTodo = async (formData: Todo) => {
     formData.priority = formData.priority.toUpperCase();
 
     await fetch("http://localhost:8080/api/tasks", {
